@@ -27,7 +27,7 @@
 #define RESUME 0xF0
 
 
-void UART_Send(uint8_t Address, uint8_t* Command, uint8_t* Params);
+void UART_Send(uint8_t Address, uint8_t Command, uint8_t* Params, uint8_t ParamsLength);
 void UART_Receive(uint8_t* Command);
 void Concat(uint8_t** Tx, uint8_t* Address, uint8_t* Data);
 void START_PW(uint8_t* out, uint8_t Frequency, uint8_t Amplitude);

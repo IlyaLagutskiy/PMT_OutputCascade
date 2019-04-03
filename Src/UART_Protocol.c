@@ -12,12 +12,13 @@ extern UART_HandleTypeDef huart1;
 void UART_Send(uint8_t Address, uint8_t Command, uint8_t* Params, uint8_t ParamsLength)
 {
 	TxStruct message;
-	HAL_UART_Transmit_IT(&huart1, message, length(message));
-	free(message);
+	message.Address = Address;
+	message.Data = &Command;
+	HAL_UART_Transmit_IT(&huart1, (uint8_t*) &message, 2);
 	HAL_Delay(1);
-	Concat(&message, &Address, Params);
-	HAL_UART_Transmit_IT(&huart1, message, length(message));
-	free(message);
+	message.Address = Address;
+	message.Data = Params;
+	HAL_UART_Transmit_IT(&huart1, (uint8_t*) &message, ParamsLength+1);
 }
 
 void UART_Receive(uint8_t* Command)
@@ -54,13 +55,6 @@ void UART_Receive(uint8_t* Command)
 		}
 			break;
 	}
-}
-
-void Concat(uint8_t** Tx, uint8_t* Address, uint8_t* Data)
-{
-	*Tx = malloc(length(Data) + 1);
-	memcpy(Tx, Address, 1);
-	memcpy(Tx + 1, Data, length(Data));
 }
 
 void START_PW(uint8_t* out, uint8_t Frequency, uint8_t Amplitude)
