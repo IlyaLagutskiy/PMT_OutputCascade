@@ -86,6 +86,8 @@ extern TIM_HandleTypeDef htim16;
 extern TIM_HandleTypeDef htim17;
 
 extern UART_HandleTypeDef huart1;
+
+extern uint32_t ADC_Data[3];
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

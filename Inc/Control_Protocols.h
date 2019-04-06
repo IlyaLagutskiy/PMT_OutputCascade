@@ -11,6 +11,8 @@
 #include "stm32f0xx_hal.h"
 #include "main.h"
 
+extern uint8_t ADC_OutOfRange;
+
 struct StartParams
 {
 	uint16_t Frequency;

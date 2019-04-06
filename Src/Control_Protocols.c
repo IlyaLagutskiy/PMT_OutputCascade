@@ -7,6 +7,8 @@
 
 #include "Control_Protocols.h"
 
+uint8_t ADC_OutOfRange = 0x00;
+
 void Start_Protocol(StartParams params)
 {
 	HAL_GPIO_WritePin(BUCK_DIS_GPIO_Port, BUCK_DIS_Pin, GPIO_PIN_RESET);
@@ -50,4 +52,9 @@ void EStop_Protocol()
 {
 	HAL_GPIO_WritePin(BUCK_DIS_GPIO_Port, BUCK_DIS_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(DRIVER_DIS_GPIO_Port, DRIVER_DIS_Pin, GPIO_PIN_SET);
+}
+
+void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc)
+{
+	ADC_OutOfRange = 0xFF;
 }

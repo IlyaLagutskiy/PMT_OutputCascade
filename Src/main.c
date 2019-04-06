@@ -74,7 +74,7 @@ TIM_HandleTypeDef htim17;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-uint32_t ADC_Data[2];
+uint32_t ADC_Data[3];
 uint8_t RxCommand;
 
 uint8_t UART_FLAG = 0;
@@ -144,7 +144,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_ADC_Start_DMA(&hadc, ADC_Data, 2);
+  HAL_ADC_Start_DMA(&hadc, ADC_Data, 3);
   HAL_UART_Receive_IT(&huart1, &RxCommand, 5);
 
   /* USER CODE END 2 */
