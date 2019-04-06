@@ -7,8 +7,6 @@
 
 #include "UART_Protocol.h"
 
-extern UART_HandleTypeDef huart1;
-
 void UART_Send(uint8_t Address, uint8_t Command, uint8_t* Params, uint8_t ParamsLength)
 {
 	TxStruct message;
@@ -27,9 +25,9 @@ void UART_Receive(uint8_t* Command)
 	{
 		case START:
 		{
-			uint8_t RxParams[7];
-			HAL_UART_Receive(&huart1, RxParams, 7, 1);
-			Start_Protocol(RxParams);
+			StartParams params;
+			HAL_UART_Receive(&huart1, &params, 4, 1);
+			Start_Protocol(params);
 		}
 			break;
 		case STOP:
@@ -39,9 +37,9 @@ void UART_Receive(uint8_t* Command)
 			break;
 		case CHANGE:
 		{
-			uint8_t RxParams[7];
-			HAL_UART_Receive(&huart1, RxParams, 7, 1);
-			Change_Protocol(RxParams);
+			StartParams params;
+			HAL_UART_Receive(&huart1, &params, 4, 1);
+			Start_Protocol(params);
 		}
 			break;
 		case PAUSE:
@@ -52,6 +50,11 @@ void UART_Receive(uint8_t* Command)
 		case RESUME:
 		{
 			Resume_Protocol();
+		}
+			break;
+		case STATE:
+		{
+			State_Protocol();
 		}
 			break;
 	}

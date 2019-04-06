@@ -9,17 +9,22 @@
 #define CONTROL_PROTOCOLS_H_
 
 #include "stm32f0xx_hal.h"
-
-void Start_Protocol(uint8_t* RxParams);
-void Stop_Protocol();
-void Change_Protocol(uint8_t* RxParams);
-void Pause_Protocol();
-void Resume_Protocol();
+#include "main.h"
 
 struct StartParams
 {
-	uint8_t Frequency;
-	uint8_t Amplitude;
+	uint16_t Frequency;
+	uint16_t Amplitude;
 };
+typedef struct StartParams StartParams;
+
+void Start_Protocol(StartParams params);
+void Stop_Protocol();
+void EStop_Protocol();
+void Change_Protocol(StartParams params);
+void Pause_Protocol();
+void Resume_Protocol();
+void State_Protocol();
+
 
 #endif /* CONTROL_PROTOCOLS_H_ */

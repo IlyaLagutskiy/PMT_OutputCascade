@@ -9,8 +9,8 @@
 <!ATTLIST board id CDATA #REQUIRED>
 ]>
 <targetDefinitions>
-  <board id="CW_Cascade">
-    <name>CW_Cascade</name>
+  <board id="PMT_OutputCascade">
+    <name>PMT_OutputCascade</name>
     <dbgIF>SWD</dbgIF>
     <dbgDEV>ST-Link</dbgDEV>
     <mcuId>stm32f030k6tx</mcuId>

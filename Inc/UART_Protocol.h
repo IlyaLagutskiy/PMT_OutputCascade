@@ -25,6 +25,7 @@
 #define CHANGE 0x11
 #define PAUSE 0x10
 #define RESUME 0xF0
+#define STATE 0x22
 
 
 void UART_Send(uint8_t Address, uint8_t Command, uint8_t* Params, uint8_t ParamsLength);
@@ -38,7 +39,8 @@ struct TxStruct
 	uint8_t Address;
 	uint8_t* Data;
 };
-
 typedef struct TxStruct TxStruct;
+
+
 
 #endif /* UART_PROTOCOL_H_ */
