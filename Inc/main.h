@@ -52,7 +52,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "UART_Protocol.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -95,8 +95,8 @@ extern uint32_t ADC_Data[3];
 #define IND_TEMP_GPIO_Port GPIOA
 #define PCB_TEMP_Pin GPIO_PIN_5
 #define PCB_TEMP_GPIO_Port GPIOA
-#define PWM_SWITCH_Pin GPIO_PIN_7
-#define PWM_SWITCH_GPIO_Port GPIOA
+#define PWM_DRIVER_Pin GPIO_PIN_7
+#define PWM_DRIVER_GPIO_Port GPIOA
 #define V_SENSE_Pin GPIO_PIN_0
 #define V_SENSE_GPIO_Port GPIOB
 #define PWM_BUCK_Pin GPIO_PIN_1

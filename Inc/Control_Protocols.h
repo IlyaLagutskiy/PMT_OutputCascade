@@ -43,6 +43,8 @@ void State_Protocol();
 void CoolDown();
 void AWDG_Config(uint32_t High, uint32_t Low);
 void Driver_PWMConfig(uint16_t freq);
+void System_Check();
+void System_Error();
 
 
 #endif /* CONTROL_PROTOCOLS_H_ */

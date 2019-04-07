@@ -12,17 +12,37 @@ uint8_t State;
 
 void Start_Protocol(StartParams params)
 {
-	uint32_t amplitude = roundf(params.Amplitude*5/600*4095);
-	AWDG_Config(amplitude+200, amplitude-200);
-	Driver_PWMConfig(params.Frequency);
-	HAL_GPIO_WritePin(BUCK_DIS_GPIO_Port, BUCK_DIS_Pin, GPIO_PIN_RESET);
-	HAL_TIM_PWM_Start(&htim14, TIM_CHANNEL_1);
-	while (VOL_OutOfRange)
+	System_Check();
+	if (State == State_WAIT)
 	{
-		HAL_Delay(1);
+		uint32_t amplitude = roundf(params.Amplitude * 5 / 600 * 4095);
+		AWDG_Config(amplitude + 200, amplitude - 200);
+		Driver_PWMConfig(params.Frequency);
+
+		HAL_GPIO_WritePin(BUCK_DIS_GPIO_Port, BUCK_DIS_Pin, GPIO_PIN_RESET);
+		HAL_TIM_PWM_Start(&htim14, TIM_CHANNEL_1);
+
+		uint16_t counter = 0;
+		while (VOL_OutOfRange)
+		{
+			HAL_Delay(1);
+			++counter;
+			if (counter > 5000)
+			{
+				State = State_BUCKFAIL;
+				System_Error();
+			}
+		}
+
+		HAL_TIM_PWM_Start(&htim17, TIM_CHANNEL_1);
+		HAL_GPIO_WritePin(DRIVER_DIS_GPIO_Port, DRIVER_DIS_Pin, GPIO_PIN_RESET);
+
+		State = State_WORK;
 	}
-	HAL_GPIO_WritePin(DRIVER_DIS_GPIO_Port, DRIVER_DIS_Pin, GPIO_PIN_RESET);
-	State = State_WORK;
+	else
+	{
+		System_Error();
+	}
 }
 
 void Stop_Protocol()
@@ -77,16 +97,17 @@ void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc)
 
 void AWDG_Config(uint32_t High, uint32_t Low)
 {
-	  ADC_AnalogWDGConfTypeDef AnalogWDGConfig = {0};
-	  AnalogWDGConfig.WatchdogMode = ADC_ANALOGWATCHDOG_SINGLE_REG;
-	  AnalogWDGConfig.Channel = ADC_CHANNEL_8;
-	  AnalogWDGConfig.ITMode = ENABLE;
-	  AnalogWDGConfig.HighThreshold = High;
-	  AnalogWDGConfig.LowThreshold = Low;
-	  if (HAL_ADC_AnalogWDGConfig(&hadc, &AnalogWDGConfig) != HAL_OK)
-	  {
-	    Error_Handler();
-	  }
+	ADC_AnalogWDGConfTypeDef AnalogWDGConfig =
+	{ 0 };
+	AnalogWDGConfig.WatchdogMode = ADC_ANALOGWATCHDOG_SINGLE_REG;
+	AnalogWDGConfig.Channel = ADC_CHANNEL_8;
+	AnalogWDGConfig.ITMode = ENABLE;
+	AnalogWDGConfig.HighThreshold = High;
+	AnalogWDGConfig.LowThreshold = Low;
+	if (HAL_ADC_AnalogWDGConfig(&hadc, &AnalogWDGConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
 }
 
 void Driver_PWMConfig(uint16_t freq)
@@ -100,9 +121,19 @@ void Driver_PWMConfig(uint16_t freq)
 		psc = 50;
 	else
 		psc = 10;
-	arr = roundf(CLK/psc);
-	ccr = CLK/1000/psc;
+	arr = roundf(CLK / psc);
+	ccr = CLK / 1000 / psc;
 	TIM17->PSC = psc;
 	TIM17->ARR = arr;
 	TIM17->CCR1 = ccr;
+}
+
+void System_Check()
+{
+
+}
+
+void System_Error()
+{
+
 }
