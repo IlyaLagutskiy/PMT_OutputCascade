@@ -110,13 +110,3 @@ void Driver_PWMConfig(uint16_t freq)
 	TIM17->ARR = arr;
 	TIM17->CCR1 = ccr;
 }
-
-void System_Check()
-{
-
-}
-
-void System_Error()
-{
-
-}
