@@ -12,11 +12,11 @@ void UART_Send(uint8_t Address, uint8_t Command, uint8_t* Params, uint8_t Params
 	TxStruct message;
 	message.Address = Address;
 	message.Data = &Command;
-	HAL_UART_Transmit_IT(&huart1, (uint8_t*) &message, 2);
+	HAL_UART_Transmit_IT(&huart2, (uint8_t*) &message, 2);
 	HAL_Delay(1);
 	message.Address = Address;
 	message.Data = Params;
-	HAL_UART_Transmit_IT(&huart1, (uint8_t*) &message, ParamsLength+1);
+	HAL_UART_Transmit_IT(&huart2, (uint8_t*) &message, ParamsLength+1);
 }
 
 void UART_Receive(uint8_t* Command)
@@ -26,20 +26,13 @@ void UART_Receive(uint8_t* Command)
 		case Command_START:
 		{
 			StartParams params;
-			HAL_UART_Receive(&huart1, &params, 4, 1);
+			HAL_UART_Receive(&huart2, &params, 4, 1);
 			Start_Protocol(params);
 		}
 			break;
 		case Command_STOP:
 		{
 			Stop_Protocol();
-		}
-			break;
-		case Command_CHANGE:
-		{
-			StartParams params;
-			HAL_UART_Receive(&huart1, &params, 4, 1);
-			Start_Protocol(params);
 		}
 			break;
 		case Command_PAUSE:

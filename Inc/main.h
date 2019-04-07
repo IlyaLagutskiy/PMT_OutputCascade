@@ -52,7 +52,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "UART_Protocol.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -67,7 +67,20 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
+extern	ADC_HandleTypeDef hadc;
+extern	DMA_HandleTypeDef hdma_adc;
 
+extern	COMP_HandleTypeDef hcomp1;
+
+extern	DAC_HandleTypeDef hdac1;
+
+extern	TIM_HandleTypeDef htim1;
+extern	TIM_HandleTypeDef htim3;
+extern	TIM_HandleTypeDef htim14;
+extern	TIM_HandleTypeDef htim16;
+extern	TIM_HandleTypeDef htim17;
+
+extern	UART_HandleTypeDef huart2;
 /* USER CODE END EM */
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
@@ -76,29 +89,20 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-extern ADC_HandleTypeDef hadc;
-extern DMA_HandleTypeDef hdma_adc;
 
-extern TIM_HandleTypeDef htim1;
-extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim14;
-extern TIM_HandleTypeDef htim16;
-extern TIM_HandleTypeDef htim17;
-
-extern UART_HandleTypeDef huart1;
-
-extern uint32_t ADC_Data[3];
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define IND_TEMP_Pin GPIO_PIN_4
-#define IND_TEMP_GPIO_Port GPIOA
+#define V_SENSE_Pin GPIO_PIN_1
+#define V_SENSE_GPIO_Port GPIOA
+#define DAC_Pin GPIO_PIN_4
+#define DAC_GPIO_Port GPIOA
 #define PCB_TEMP_Pin GPIO_PIN_5
 #define PCB_TEMP_GPIO_Port GPIOA
 #define PWM_DRIVER_Pin GPIO_PIN_7
 #define PWM_DRIVER_GPIO_Port GPIOA
-#define V_SENSE_Pin GPIO_PIN_0
-#define V_SENSE_GPIO_Port GPIOB
+#define IND_TEMP_Pin GPIO_PIN_0
+#define IND_TEMP_GPIO_Port GPIOB
 #define PWM_BUCK_Pin GPIO_PIN_1
 #define PWM_BUCK_GPIO_Port GPIOB
 #define DRIVER_DIS_Pin GPIO_PIN_11

@@ -13,6 +13,6 @@
     <name>PMT_OutputCascade</name>
     <dbgIF>SWD</dbgIF>
     <dbgDEV>ST-Link</dbgDEV>
-    <mcuId>stm32f030k6tx</mcuId>
+    <mcuId>stm32f051k8tx</mcuId>
   </board>
 </targetDefinitions>

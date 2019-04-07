@@ -15,8 +15,7 @@ void Start_Protocol(StartParams params)
 	System_Check();
 	if (State == State_WAIT)
 	{
-		uint32_t amplitude = roundf(params.Amplitude * 5 / 600 * 4095);
-		AWDG_Config(amplitude + 200, amplitude - 200);
+
 		Driver_PWMConfig(params.Frequency);
 
 		HAL_GPIO_WritePin(BUCK_DIS_GPIO_Port, BUCK_DIS_Pin, GPIO_PIN_RESET);
@@ -56,14 +55,13 @@ void Stop_Protocol()
 	CoolDown();
 }
 
-void Change_Protocol(StartParams params)
-{
-
-}
-
 void Pause_Protocol()
 {
-
+	HAL_GPIO_WritePin(BUCK_DIS_GPIO_Port, BUCK_DIS_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(DRIVER_DIS_GPIO_Port, DRIVER_DIS_Pin, GPIO_PIN_SET);
+	HAL_TIM_PWM_Stop(&htim14, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Stop(&htim17, TIM_CHANNEL_1);
+	State = State_PAUSE;
 }
 
 void Resume_Protocol()
@@ -93,21 +91,6 @@ void CoolDown()
 void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc)
 {
 	VOL_OutOfRange = 0xFF;
-}
-
-void AWDG_Config(uint32_t High, uint32_t Low)
-{
-	ADC_AnalogWDGConfTypeDef AnalogWDGConfig =
-	{ 0 };
-	AnalogWDGConfig.WatchdogMode = ADC_ANALOGWATCHDOG_SINGLE_REG;
-	AnalogWDGConfig.Channel = ADC_CHANNEL_8;
-	AnalogWDGConfig.ITMode = ENABLE;
-	AnalogWDGConfig.HighThreshold = High;
-	AnalogWDGConfig.LowThreshold = Low;
-	if (HAL_ADC_AnalogWDGConfig(&hadc, &AnalogWDGConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
 }
 
 void Driver_PWMConfig(uint16_t freq)

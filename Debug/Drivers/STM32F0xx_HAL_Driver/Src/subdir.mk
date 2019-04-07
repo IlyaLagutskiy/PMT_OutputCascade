@@ -7,7 +7,10 @@ C_SRCS += \
 ../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.c \
 ../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.c \
 ../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc_ex.c \
+../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_comp.c \
 ../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c \
+../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c \
+../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac_ex.c \
 ../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c \
 ../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c \
 ../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash_ex.c \
@@ -27,7 +30,10 @@ OBJS += \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.o \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.o \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc_ex.o \
+./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_comp.o \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.o \
+./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.o \
+./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac_ex.o \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.o \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.o \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash_ex.o \
@@ -47,7 +53,10 @@ C_DEPS += \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.d \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.d \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc_ex.d \
+./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_comp.d \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.d \
+./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.d \
+./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac_ex.d \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.d \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.d \
 ./Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash_ex.d \
@@ -69,7 +78,7 @@ Drivers/STM32F0xx_HAL_Driver/Src/%.o: ../Drivers/STM32F0xx_HAL_Driver/Src/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -mfloat-abi=soft '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F030x6 -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Inc" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Drivers/STM32F0xx_HAL_Driver/Inc" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Drivers/CMSIS/Device/ST/STM32F0xx/Include" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -mfloat-abi=soft '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F051x8 -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Inc" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Drivers/STM32F0xx_HAL_Driver/Inc" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Drivers/CMSIS/Device/ST/STM32F0xx/Include" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

@@ -21,8 +21,7 @@
 #define Cool_Addr 0x55
 
 #define Command_START 0xFF
-#define Command_STOP 0x00
-#define Command_CHANGE 0x11
+#define Command_STOP 0x00Û
 #define Command_PAUSE 0x10
 #define Command_RESUME 0xF0
 #define Command_STATE 0x22

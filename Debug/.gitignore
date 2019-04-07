@@ -1,7 +1,7 @@
-/sources.mk
+/Drivers/
 /Src/
 /makefile
-/startup/
 /objects.list
 /objects.mk
-/Drivers/
+/sources.mk
+/startup/

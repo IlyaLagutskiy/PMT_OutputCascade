@@ -31,10 +31,10 @@ endif
 all: PMT_OutputCascade.elf
 
 # Tool invocations
-PMT_OutputCascade.elf: $(OBJS) $(USER_OBJS) ../STM32F030K6Tx_FLASH.ld
+PMT_OutputCascade.elf: $(OBJS) $(USER_OBJS) ../STM32F051K8Tx_FLASH.ld
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU GCC Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32F030K6Tx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "PMT_OutputCascade.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
+	arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32F051K8Tx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "PMT_OutputCascade.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build

@@ -36,12 +36,10 @@ typedef struct
 void Start_Protocol(StartParams params);
 void Stop_Protocol();
 void EStop_Protocol();
-void Change_Protocol(StartParams params);
 void Pause_Protocol();
 void Resume_Protocol();
 void State_Protocol();
 void CoolDown();
-void AWDG_Config(uint32_t High, uint32_t Low);
 void Driver_PWMConfig(uint16_t freq);
 void System_Check();
 void System_Error();
