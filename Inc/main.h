@@ -99,8 +99,8 @@ extern uint32_t ADC_Data[3];
 #define PWM_SWITCH_GPIO_Port GPIOA
 #define V_SENSE_Pin GPIO_PIN_0
 #define V_SENSE_GPIO_Port GPIOB
-#define PWM_PUMP_Pin GPIO_PIN_1
-#define PWM_PUMP_GPIO_Port GPIOB
+#define PWM_BUCK_Pin GPIO_PIN_1
+#define PWM_BUCK_GPIO_Port GPIOB
 #define DRIVER_DIS_Pin GPIO_PIN_11
 #define DRIVER_DIS_GPIO_Port GPIOA
 #define BUCK_DIS_Pin GPIO_PIN_12

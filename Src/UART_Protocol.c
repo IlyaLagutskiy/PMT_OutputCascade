@@ -23,36 +23,36 @@ void UART_Receive(uint8_t* Command)
 {
 	switch (*Command)
 	{
-		case START:
+		case Command_START:
 		{
 			StartParams params;
 			HAL_UART_Receive(&huart1, &params, 4, 1);
 			Start_Protocol(params);
 		}
 			break;
-		case STOP:
+		case Command_STOP:
 		{
 			Stop_Protocol();
 		}
 			break;
-		case CHANGE:
+		case Command_CHANGE:
 		{
 			StartParams params;
 			HAL_UART_Receive(&huart1, &params, 4, 1);
 			Start_Protocol(params);
 		}
 			break;
-		case PAUSE:
+		case Command_PAUSE:
 		{
 			Pause_Protocol();
 		}
 			break;
-		case RESUME:
+		case Command_RESUME:
 		{
 			Resume_Protocol();
 		}
 			break;
-		case STATE:
+		case Command_STATE:
 		{
 			State_Protocol();
 		}
