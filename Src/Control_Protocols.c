@@ -12,7 +12,9 @@ uint8_t State;
 
 void Start_Protocol(StartParams params)
 {
-	AWDG_Config(0,0);
+	uint32_t amplitude = roundf(params.Amplitude*5/600*4095);
+	AWDG_Config(amplitude+200, amplitude-200);
+	Driver_PWMConfig(params.Frequency);
 	HAL_GPIO_WritePin(BUCK_DIS_GPIO_Port, BUCK_DIS_Pin, GPIO_PIN_RESET);
 	HAL_TIM_PWM_Start(&htim14, TIM_CHANNEL_1);
 	while (VOL_OutOfRange)
@@ -85,4 +87,22 @@ void AWDG_Config(uint32_t High, uint32_t Low)
 	  {
 	    Error_Handler();
 	  }
+}
+
+void Driver_PWMConfig(uint16_t freq)
+{
+	uint16_t psc;
+	uint16_t arr;
+	uint16_t ccr;
+	if (freq >= 1 && freq <= 5)
+		psc = 250;
+	else if (freq >= 6 && freq <= 32)
+		psc = 50;
+	else
+		psc = 10;
+	arr = roundf(CLK/psc);
+	ccr = CLK/1000/psc;
+	TIM17->PSC = psc;
+	TIM17->ARR = arr;
+	TIM17->CCR1 = ccr;
 }
