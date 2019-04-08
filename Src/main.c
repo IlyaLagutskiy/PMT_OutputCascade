@@ -78,7 +78,7 @@ TIM_HandleTypeDef htim17;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+uint8_t RxCommand;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -142,7 +142,10 @@ int main(void)
   MX_DAC1_Init();
   MX_COMP1_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim3);
+  HAL_UART_Receive_IT(&huart2, &RxCommand, 1);
+  HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
+  HAL_COMP_Start_IT(&hcomp1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -283,9 +286,9 @@ static void MX_COMP1_Init(void)
   hcomp1.Init.Output = COMP_OUTPUT_NONE;
   hcomp1.Init.OutputPol = COMP_OUTPUTPOL_NONINVERTED;
   hcomp1.Init.Hysteresis = COMP_HYSTERESIS_LOW;
-  hcomp1.Init.Mode = COMP_MODE_ULTRALOWPOWER;
+  hcomp1.Init.Mode = COMP_MODE_LOWPOWER;
   hcomp1.Init.WindowMode = COMP_WINDOWMODE_DISABLE;
-  hcomp1.Init.TriggerMode = COMP_TRIGGERMODE_IT_RISING;
+  hcomp1.Init.TriggerMode = COMP_TRIGGERMODE_IT_RISING_FALLING;
   if (HAL_COMP_Init(&hcomp1) != HAL_OK)
   {
     Error_Handler();

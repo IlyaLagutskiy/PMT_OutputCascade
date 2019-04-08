@@ -41,8 +41,6 @@ void Resume_Protocol();
 void State_Protocol();
 void CoolDown();
 void Driver_PWMConfig(uint16_t freq);
-void System_Check();
-void System_Error();
 
 
 #endif /* CONTROL_PROTOCOLS_H_ */

@@ -20,6 +20,7 @@
 "Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.o"
 "Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.o"
 "Src/Control_Protocols.o"
+"Src/System.o"
 "Src/UART_Protocol.o"
 "Src/main.o"
 "Src/stm32f0xx_hal_msp.o"

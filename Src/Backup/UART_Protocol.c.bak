@@ -26,7 +26,7 @@ void UART_Receive(uint8_t* Command)
 		case Command_START:
 		{
 			StartParams params;
-			HAL_UART_Receive(&huart2, &params, 4, 1);
+			HAL_UART_Receive(&huart2, (uint8_t*) &params, 4, 1);
 			Start_Protocol(params);
 		}
 			break;
@@ -51,14 +51,4 @@ void UART_Receive(uint8_t* Command)
 		}
 			break;
 	}
-}
-
-void START_PW(uint8_t* out, uint8_t Frequency, uint8_t Amplitude)
-{
-	sprintf(out, "%03d %03d", Frequency, Amplitude);
-}
-
-void START_PR(uint8_t* in, uint8_t* Frequency, uint8_t* Amplitude)
-{
-	sscanf(in, "%03d %03d", *Frequency, *Amplitude);
 }

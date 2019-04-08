@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Src/Control_Protocols.c \
+../Src/System.c \
 ../Src/UART_Protocol.c \
 ../Src/main.c \
 ../Src/stm32f0xx_hal_msp.c \
@@ -13,6 +14,7 @@ C_SRCS += \
 
 OBJS += \
 ./Src/Control_Protocols.o \
+./Src/System.o \
 ./Src/UART_Protocol.o \
 ./Src/main.o \
 ./Src/stm32f0xx_hal_msp.o \
@@ -21,6 +23,7 @@ OBJS += \
 
 C_DEPS += \
 ./Src/Control_Protocols.d \
+./Src/System.d \
 ./Src/UART_Protocol.d \
 ./Src/main.d \
 ./Src/stm32f0xx_hal_msp.d \
@@ -33,7 +36,7 @@ Src/%.o: ../Src/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo $(PWD)
-	arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -mfloat-abi=soft '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F051x8 -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Inc" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Drivers/STM32F0xx_HAL_Driver/Inc" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Drivers/CMSIS/Device/ST/STM32F0xx/Include" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade 2/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -mfloat-abi=soft '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F051x8 -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Inc" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Drivers/STM32F0xx_HAL_Driver/Inc" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Drivers/CMSIS/Device/ST/STM32F0xx/Include" -I"C:/Users/ilyal/OneDrive/CW PCMD/PMT_OutputCascade/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

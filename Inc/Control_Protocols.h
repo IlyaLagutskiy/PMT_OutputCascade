@@ -13,6 +13,8 @@
 #include <math.h>
 
 extern uint8_t VOL_OutOfRange;
+extern uint8_t IND_OutOfRange;
+extern uint8_t PCB_OutOfRange;
 extern uint8_t State;
 
 #define CLK 16000000
@@ -41,6 +43,7 @@ void Resume_Protocol();
 void State_Protocol();
 void CoolDown();
 void Driver_PWMConfig(uint16_t freq);
+void Buck_DACConfig(uint16_t amp);
 
 
 #endif /* CONTROL_PROTOCOLS_H_ */

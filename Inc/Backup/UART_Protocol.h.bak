@@ -22,7 +22,6 @@
 
 #define Command_START 0xFF
 #define Command_STOP 0x00
-#define Command_CHANGE 0x11
 #define Command_PAUSE 0x10
 #define Command_RESUME 0xF0
 #define Command_STATE 0x22
@@ -31,8 +30,6 @@
 void UART_Send(uint8_t Address, uint8_t Command, uint8_t* Params, uint8_t ParamsLength);
 void UART_Receive(uint8_t* Command);
 void Concat(uint8_t** Tx, uint8_t* Address, uint8_t* Data);
-void START_PW(uint8_t* out, uint8_t Frequency, uint8_t Amplitude);
-void START_PR(uint8_t* in, uint8_t* Frequency, uint8_t* Amplitude);
 
 struct TxStruct
 {

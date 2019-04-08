@@ -26,18 +26,21 @@
 #define Command_RESUME 0xF0
 #define Command_STATE 0x22
 
-
 void UART_Send(uint8_t Address, uint8_t Command, uint8_t* Params, uint8_t ParamsLength);
 void UART_Receive(uint8_t* Command);
-void Concat(uint8_t** Tx, uint8_t* Address, uint8_t* Data);
 
-struct TxStruct
+typedef struct
 {
 	uint8_t Address;
 	uint8_t* Data;
-};
-typedef struct TxStruct TxStruct;
+} TxStruct;
 
-
+typedef struct
+{
+	uint8_t SlaveAddress;
+	uint8_t State;
+	uint8_t InductorTemp;
+	uint8_t PCBTemp;
+} StateData;
 
 #endif /* UART_PROTOCOL_H_ */
