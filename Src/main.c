@@ -79,6 +79,7 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 uint8_t RxCommand;
+uint32_t ADCData[2];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -146,6 +147,7 @@ int main(void)
   HAL_UART_Receive_IT(&huart2, &RxCommand, 1);
   HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
   HAL_COMP_Start_IT(&hcomp1);
+  HAL_ADC_Start_DMA(&hadc, ADCData, 2);
   /* USER CODE END 2 */
 
   /* Infinite loop */

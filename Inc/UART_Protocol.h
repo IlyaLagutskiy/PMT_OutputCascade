@@ -39,8 +39,8 @@ typedef struct
 {
 	uint8_t SlaveAddress;
 	uint8_t State;
-	uint8_t InductorTemp;
-	uint8_t PCBTemp;
+	uint16_t InductorTemp;
+	uint16_t PCBTemp;
 } StateData;
 
 #endif /* UART_PROTOCOL_H_ */

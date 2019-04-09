@@ -78,9 +78,8 @@ void Resume_Protocol()
 
 void State_Protocol()
 {
-	System_Check();
-	StateData data;
-
+	StateData data = System_Check();
+	UART_Send(Main_Addr, Command_STATE, (uint8_t*) &data, 6);
 }
 
 void EStop_Protocol()
