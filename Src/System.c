@@ -16,7 +16,7 @@ StateData System_Check()
 
 void System_Error()
 {
-
+	HAL_GPIO_WritePin(FAIL_GPIO_Port, FAIL_Pin, GPIO_PIN_SET);
 }
 
 uint16_t System_GetIndTemp()

@@ -50,5 +50,9 @@ void UART_Receive(uint8_t* Command)
 			State_Protocol();
 		}
 			break;
+		case Command_RESET:
+		{
+			Reset_Protocol();
+		}
 	}
 }

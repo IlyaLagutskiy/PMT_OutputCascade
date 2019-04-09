@@ -25,6 +25,7 @@
 #define Command_PAUSE 0x10
 #define Command_RESUME 0xF0
 #define Command_STATE 0x22
+#define Command_RESET 0x01
 
 void UART_Send(uint8_t Address, uint8_t Command, uint8_t* Params, uint8_t ParamsLength);
 void UART_Receive(uint8_t* Command);

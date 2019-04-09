@@ -89,6 +89,11 @@ void EStop_Protocol()
 	State = State_ESTOP;
 }
 
+void Reset_Protocol()
+{
+	HAL_GPIO_WritePin(FAIL_GPIO_Port, FAIL_Pin, GPIO_PIN_RESET);
+}
+
 void CoolDown()
 {
 	State = State_COOLDOWN;
