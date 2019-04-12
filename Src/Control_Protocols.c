@@ -92,6 +92,7 @@ void EStop_Protocol()
 void Reset_Protocol()
 {
 	HAL_GPIO_WritePin(FAIL_GPIO_Port, FAIL_Pin, GPIO_PIN_RESET);
+	Stop_Protocol();
 }
 
 void CoolDown()

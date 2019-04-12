@@ -95,6 +95,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Tach_Pin GPIO_PIN_0
+#define Tach_GPIO_Port GPIOA
 #define V_SENSE_Pin GPIO_PIN_1
 #define V_SENSE_GPIO_Port GPIOA
 #define DAC_Pin GPIO_PIN_4

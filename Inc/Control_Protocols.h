@@ -41,6 +41,7 @@ void EStop_Protocol();
 void Pause_Protocol();
 void Resume_Protocol();
 void State_Protocol();
+void Reset_Protocol();
 void CoolDown();
 void Driver_PWMConfig(uint16_t freq);
 void Buck_DACConfig(uint16_t amp);

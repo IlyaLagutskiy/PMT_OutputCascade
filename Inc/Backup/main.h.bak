@@ -81,6 +81,8 @@ extern	TIM_HandleTypeDef htim16;
 extern	TIM_HandleTypeDef htim17;
 
 extern	UART_HandleTypeDef huart2;
+
+extern uint32_t ADCData[2];
 /* USER CODE END EM */
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
@@ -123,6 +125,12 @@ void Error_Handler(void);
 #define AC_OK_Pin GPIO_PIN_7
 #define AC_OK_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
+
+/*#define bool uint8_t
+#define TRUE 0xFF
+#define FALSE 0x00
+#define uint8 uint8_t
+#define uint16 uint16_t*/
 
 /* USER CODE END Private defines */
 
